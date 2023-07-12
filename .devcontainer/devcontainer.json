@@ -9,7 +9,6 @@
           "github.copilot",
           "eamodio.gitlens",
           "ms-dotnettools.csharp",
-          "ms-vscode.vscode-typescript-tslint-plugin",
           "bradlc.vscode-tailwindcss"
       ]
       }

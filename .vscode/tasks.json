@@ -1,0 +1,83 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build DotNet API and Run it",
+            "type": "shell",
+            "command": "chmod -R +x ./sh-scripts && ./sh-scripts/build-and-run-dotnet.sh ${input:openAIKey} ${input:openAIVisionUrl} ${input:openAIVisionKey}",
+            "presentation": {
+                "reveal": "always",
+                "panel": "new"
+            }
+        },
+        {
+            "label": "Build Angular Frontend and Run it",
+            "type": "shell",
+            "command": "chmod -R +x ./sh-scripts && ./sh-scripts/build-and-run-angular.sh",
+            "presentation": {
+                "reveal": "always",
+                "panel": "new"
+            }
+        },
+        {
+            "label": "Run Hackethon",
+            "dependsOn": ["Build DotNet API and Run it", "Build Angular Frontend and Run it", "Make port public"]
+        },
+        {
+            "label": "build",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/dotnet-api/hackethon-openai.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "publish",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "publish",
+                "${workspaceFolder}/dotnet-api/hackethon-openai.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "watch",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "watch",
+                "run",
+                "--project",
+                "${workspaceFolder}/dotnet-api/hackethon-openai.csproj"
+            ],
+            "problemMatcher": "$msCompile"
+        }
+    ],
+    "inputs": [
+        {
+            "id": "openAIKey",
+            "description": "openAIKey:",
+            "default": "Hello",
+            "type": "promptString"
+        },
+        {
+            "id": "openAIVisionUrl",
+            "description": "openAIVisionUrl:",
+            "default": "Hello",
+            "type": "promptString"
+        },
+        {
+            "id": "openAIVisionKey",
+            "description": "openAIVisionKey:",
+            "default": "Hello",
+            "type": "promptString"
+        },
+    ]
+}

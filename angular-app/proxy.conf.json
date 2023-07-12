@@ -1,0 +1,7 @@
+{
+    "/api": {
+        "target": "https://tidkeavanade-bookish-guide-566rjg7x4xqf7955-5160.preview.app.github.dev/",
+        "secure": false,
+        "changeOrigin": true
+    }
+}
